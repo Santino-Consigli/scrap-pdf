@@ -12,17 +12,33 @@ pdf = fitz.open("input/FORMULARIO B.pdf")
     
           
 pag = pdf.load_page(0)
-texto = pag.get_text().split('/n')
+texto = pag.get_text().split('\n')
 
 def getData():
-    for t in texto:
-        if t == 'Final':
-            print('Hola')
-    
+    print("probando")
+    print(texto[0][22:])
+    print(texto[1][7:])
+    print(texto[2][19:])
+    print(texto[3][21:])
+    print(texto)
+
+    #cargar en la clase encabezado
+
+    #nuevoEncab = Encabezado()
+    #nuevoEncab.numForm = texto[18:]
+    # fecha
+    # respCarga
+    # numDoc
+    # establecimiento
+    # fechaFormu
+    # consultas
+    # recetas
+
+    #crgar medicamentos, recorro con ciclo ford
     
     
 
 if __name__ == "__main__":
     os.system('cls')
     print(texto)
-    
+    getData()
