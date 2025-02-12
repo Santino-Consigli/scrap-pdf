@@ -10,3 +10,11 @@ class Medicamento:
         self.otras_salidas = otras_salidas
         self.ajuste = ajuste
         self.stock_final = stock_final
+
+class Med:
+    def __init__(self, code, description):
+        self.code = code
+        self.description = description
+
+    def __str__(self):
+        return f"Code: {self.code}, Description: {self.description}"

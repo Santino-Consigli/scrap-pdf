@@ -37,6 +37,10 @@ def getTextoMedicamentos():
     return textoMedicamentos
 
 
+def validateIfRegex(palabra):
+    regexCodeMedication = r'^\d{3} '
+    if re.findall(regexCodeMedication, palabra):
+     return True
 
 
 if __name__ == "__main__":
@@ -47,10 +51,17 @@ if __name__ == "__main__":
     newMedicamento = []
     for palabra in textoMedicamentos.split('\n'):
         counter+=1
-        if counter ==1:
-            #medicamento = Medicamento()
-            print(palabra)
-        if counter==10:
+
+        if counter ==1 and validateIfRegex(palabra):
+            print("crear nuevo medicamento")
+
+        else:
+
+
+
+
+
+         if counter==10:
               counter=0
 
 
