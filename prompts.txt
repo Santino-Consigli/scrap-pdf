@@ -1,0 +1,21 @@
+prompt 1 regex code medication
+
+regexCodeMedication = r'\d{3} ' como puedo hacer que del lado izquierdo el regex no pueda tener ningun caracter
+
+Para asegurarte de que no haya ningún carácter a la izquierda del patrón de tres dígitos en tu expresión regular, puedes usar el ancla ^ que indica el inicio de una línea. De esta manera, el patrón solo coincidirá si los tres dígitos están al comienzo de la línea.
+
+Aquí tienes cómo puedes modificar tu expresión regular:
+regexCodeMedication = r'^\d{3} '
+
+prompt 2 function len
+
+what does the function len(string)
+
+The len(string) function in Python returns the number of characters in the string. It is used to determine the length of the string.
+
+For example:
+my_string = "Hello, World!"
+length = len(my_string)
+print(length)  # Output: 13
+
+In this example, len(my_string) returns 13 because the string "Hello, World!" contains 13 characters, including spaces and punctuation.

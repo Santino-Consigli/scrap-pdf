@@ -16,6 +16,7 @@ pag = pdf.load_page(0)
 texto = pag.get_text().split('\n')
 
 
+
 def extractEncabezado(texto):
     word = "Final"
     textoEncabezado = ''
@@ -28,25 +29,30 @@ def extractEncabezado(texto):
             textoEncabezado += linea + '\n'
     return textoEncabezado, indexToMedicamentos
 
-def getData():
+def getTextoMedicamentos():
     textoEncabezado, indexToMedicamentos = extractEncabezado(texto)
-    #todoo get data from header with regexs and create instance of Encabezado
-    nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:],texto[3][21:], texto[4][17:-1], texto[5][26:], texto[6][11:], texto[7][20:])
     textoMedicamentos = ""
-    for index in range(indexToMedicamentos+1, len(texto)):
-         textoMedicamentos += texto[index] + '\n'
-    regexCodeMedication = r'^\d{3} '
-    print(textoMedicamentos.split('\n'))
-    lineaToComparar =''
-    for linea in textoMedicamentos.split('\n'):
-         if re.findall(regexCodeMedication,linea):
-          lineaToComparar = linea
-
+    for index in range(indexToMedicamentos + 1, len(texto)):
+        textoMedicamentos += texto[index] + '\n'
+    return textoMedicamentos
 
 
 
 
 if __name__ == "__main__":
     os.system('cls')
-    getData()
-    print(texto)
+    textoMedicamentos= getTextoMedicamentos()
+    counter=0
+    listaMedicamentos =[]
+    newMedicamento = []
+    for palabra in textoMedicamentos.split('\n'):
+        counter+=1
+        if counter ==1:
+            #medicamento = Medicamento()
+            print(palabra)
+        if counter==10:
+              counter=0
+
+
+
+
