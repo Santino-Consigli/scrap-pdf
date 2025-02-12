@@ -39,15 +39,12 @@ def getData():
 
     #cargar en la clase encabezado
 
-    nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:],texto[3][21:], texto[4][17:-1], texto[5][26:], texto[6][11:], texto[7][20:])
-    # nuevoEncab.numForm = texto[0][22:]
-    # nuevoEncab.fecha = texto[1][7:]
-    # nuevoEncab.respCarga = texto[2][19:]
-    # nuevoEncab.numDoc = texto[3][21:]
-    # nuevoEncab.establecimiento = texto[4][17:-1]
-    # nuevoEncab.fechaFormu = texto[5][26:]
-    # nuevoEncab.consultas = texto[6][11:]
-    # nuevoEncab.recetas = texto[7][20:]
+    #pregunto si la celda del documento se puede castear a int, y si no se puede es porque foma parte del nombre-
+    if  int(texto[3][21:]):
+        nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:],texto[3][21:], texto[4][17:-1], texto[5][26:], texto[6][11:], texto[7][20:])
+    else:
+        nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:]+texto[3],texto[4][21:], texto[5][17:-1], texto[6][26:], texto[7][11:], texto[8][20:])
+
     print(nuevoEncab.toString())
 
     #crgar medicamentos, recorro con ciclo ford
@@ -58,4 +55,4 @@ if __name__ == "__main__":
     os.system('cls')
     print(texto)
     print("- - - - Obtener data - - - - ")
-    # getData()
+    getData()
