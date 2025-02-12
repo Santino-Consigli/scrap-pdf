@@ -29,15 +29,16 @@ def getData():
         except ValueError:
             return False
         
-    documento = texto[3][21:]
+    if pag == 0:
+        documento = texto[3][21:]
 
-    if  convertir_a_entero(documento):
-        nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:],documento, texto[4][17:-1], texto[5][26:], texto[6][11:], texto[7][20:])
-    else:
-        nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:]+ " " +texto[3],texto[4][21:], texto[5][17:-1], texto[6][26:], texto[7][11:], texto[8][20:])
+        if  convertir_a_entero(documento):
+            nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:],documento, texto[4][17:-1], texto[5][26:], texto[6][11:], texto[7][20:])
+        else:
+            nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:]+ " " +texto[3],texto[4][21:], texto[5][17:-1], texto[6][26:], texto[7][11:], texto[8][20:])
 
-    print(nuevoEncab.toString())
-    print("- - - - - - - - -")
+        print(nuevoEncab.toString())
+        print("- - - - - - - - -")
 
     
 #  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
