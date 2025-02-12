@@ -16,43 +16,93 @@ texto = pag.get_text().split('\n')
 
 
 def getData():
-    # print(len(texto))
-    # print("probando")
-    # print(texto[0][22:])
-    # print(texto[1][7:])
-    # print(texto[2][19:])
-    # print(texto[3][21:])
-    # print(texto[4][17:-1])
-    # print(texto[5][26:])
-    # print(texto[6][11:])
-    # print(texto[7][20:])
 
-    # contador = 9
-    # for i in range(len(texto)):
-    #     if i > 29:
-    #         swithc (contador >= 9):
-    #             print("nombremedicamento" + texto[i])
-    #         if contador = 8
-    #             contador -= 1
-            
+#  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#       LEER ENCABEZADO
+#  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# funcion para convertir a entero, rama verdadera devuelve el entero, rama falsa devuelve un falso bool
 
 
-    #cargar en la clase encabezado
+    def convertir_a_entero(cadena):
+        try:
+            return int(cadena)
+        except ValueError:
+            return False
+        
+    documento = texto[3][21:]
 
-    #pregunto si la celda del documento se puede castear a int, y si no se puede es porque foma parte del nombre-
-    if  int(texto[3][21:]):
-        nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:],texto[3][21:], texto[4][17:-1], texto[5][26:], texto[6][11:], texto[7][20:])
+    if  convertir_a_entero(documento):
+        nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:],documento, texto[4][17:-1], texto[5][26:], texto[6][11:], texto[7][20:])
     else:
-        nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:]+texto[3],texto[4][21:], texto[5][17:-1], texto[6][26:], texto[7][11:], texto[8][20:])
+        nuevoEncab = Encabezado(texto[0][22:], texto[1][7:],texto[2][19:]+ " " +texto[3],texto[4][21:], texto[5][17:-1], texto[6][26:], texto[7][11:], texto[8][20:])
 
     print(nuevoEncab.toString())
+    print("- - - - - - - - -")
 
-    #crgar medicamentos, recorro con ciclo ford
     
-    
+#  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#       LEER DATOS
+#  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    array_datos = 10 * [None]
+    count = 0
+    final_true = False
+
+
+        
+    def validar_codigo_datos(codigo):
+        if len(codigo) > 3:  # Verificar que la longitud sea suficiente
+            if codigo[:3].isdigit():
+                if codigo[3] == " ":
+                    # print("Ves un espacio, yeyy")
+                    return True
+                else:
+                    print("No validado el código: el quinto carácter no es un espacio.")
+                    return False
+            else:
+                print("No es código, siguiente")
+                return False
+        else:
+            # print("Código demasiado corto")
+            return False
+
+    for i in texto:
+        if final_true:
+            if count < 10:
+                if count == 0:
+                    if validar_codigo_datos(i):
+                        array_datos[count] = i 
+                        count += 1
+                elif count == 1:
+                    if i.isdigit() == False:
+                        array_datos[count-1] = array_datos[count-1] + i
+                    else:
+                        array_datos[count] = i 
+                        count += 1
+                else:
+                    array_datos[count] = i 
+                    count += 1
+            else:
+                count = 0
+                # print(" - - - - - - - - - - - - - ")
+                # print("Array datos capturados")
+                print(" - - - - - - - - - - - - - ")
+                print(array_datos)
+                print(" - - - - - - - - - - - - - ")
+        else:
+            if i == "Final":
+                print("Llegue a la palabra Final")
+                final_true = True
+
+                
+
+
+
+
+#  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 if __name__ == "__main__":
     os.system('cls')
-    print(texto)
+    # print(texto)
     print("- - - - Obtener data - - - - ")
     getData()
