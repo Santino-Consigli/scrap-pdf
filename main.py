@@ -75,7 +75,7 @@ def getData():
                         count += 1
                 elif count == 1:
                     if i.isdigit() == False:
-                        array_datos[count-1] = array_datos[count-1] + i
+                        array_datos[count-1] = array_datos[count-1] + " " + i
                     else:
                         array_datos[count] = i 
                         count += 1
